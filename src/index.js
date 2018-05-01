@@ -12,8 +12,10 @@
 
  Другими словами: функция должна возвращать в неизменном виде то, что поступает ей на вход
  */
-function returnFirstArgument() {
-}
+// Стрелочная функция не имеет своих аругментов
+var returnFirstArgument = a => a;
+
+returnFirstArgument('Привет');
 
 /*
  Задание 2:
@@ -29,8 +31,12 @@ function returnFirstArgument() {
  Пример:
    sumWithDefaults(10) вернет 110
  */
-function sumWithDefaults(a, b) {
+// раньше было указано значение переменной b в теле функции - выдавало ошибку, почему?
+function sumWithDefaults(a, b = 100) {
+    return a + b;
 }
+
+sumWithDefaults(10);
 
 /*
  Задание 3:
@@ -40,8 +46,20 @@ function sumWithDefaults(a, b) {
  Пример:
    returnFnResult(() => 'привет') вернет 'привет'
  */
+
+// function returnFnResult() {
+//     var returnFnResult2 = fn2 => fn2;
+
+//     return returnFnResult2('Привет, мир!');
+// }
+
+// returnFnResult();
+
 function returnFnResult(fn) {
+    return fn();
 }
+
+returnFnResult(() => 'привет')
 
 /*
  Задание 4:
@@ -56,8 +74,18 @@ function returnFnResult(fn) {
    console.log(f()); // выведет 12
    console.log(f()); // выведет 13
  */
-function returnCounter(number) {
+// поменял местыми ++, все заработало
+function returnCounter(x = 0) {
+    return function () {
+        return ++x;
+    }
 }
+
+var f = returnCounter(10);
+
+f();
+f();
+f();
 
 /*
  Задание 5 *:
@@ -68,8 +96,18 @@ function returnCounter(number) {
  Пример:
    returnArgumentsArray(1, 2, 3) вернет [1, 2, 3]
  */
+
 function returnArgumentsArray() {
+    var array = [];
+
+    for (var i = 0; i < arguments.length; i++) {
+        array[i] = arguments[i];
+    }
+
+    return array;
 }
+
+returnArgumentsArray(1, 2, 3);
 
 /*
  Задание 6 *:
@@ -86,14 +124,26 @@ function returnArgumentsArray() {
 
    console.log(newSum()) выведет 6
  */
-function bindFunction(fn) {
-}
+
+// function bindFunction(sum, a, b) {
+
+//     function F(a, b) {
+//         return a + b + fn;
+//     }
+
+//     return F(10, 20);
+// }
+
+// function sum(a, b) {
+//     return a + b;
+// }
+
+// console.log(bindFunction(3));
 
 export {
     returnFirstArgument,
     sumWithDefaults,
     returnArgumentsArray,
     returnFnResult,
-    returnCounter,
-    bindFunction
+    returnCounter
 }
