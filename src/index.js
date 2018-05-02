@@ -75,10 +75,8 @@ returnFnResult(() => 'привет')
    console.log(f()); // выведет 13
  */
 // поменял местыми ++, все заработало
-function returnCounter(x = 0) {
-    return function () {
-        return ++x;
-    }
+var returnCounter = (x = 0) => function () {
+    return ++x;
 }
 
 var f = returnCounter(10);
@@ -97,12 +95,16 @@ f();
    returnArgumentsArray(1, 2, 3) вернет [1, 2, 3]
  */
 
-function returnArgumentsArray() {
-    var array = [];
+// var array = [];
 
-    for (var i = 0; i < arguments.length; i++) {
-        array[i] = arguments[i];
-    }
+// for (var i = 0; i < arguments.length; i++) {
+//     array[i] = arguments[i];
+// }
+
+function returnArgumentsArray() {
+
+    var args = arguments;
+    var array = [...args];
 
     return array;
 }
