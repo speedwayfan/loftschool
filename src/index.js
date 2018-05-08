@@ -19,23 +19,24 @@
 
 function isAllTrue(array, fn) {
 
-  if (!Array.isArray(array) || !array.length) {
-    throw new Error('empty array');
-  };
-  if (!fn) {
-    throw new Error('fn is not a function');
-  };
-
-  for (i = 0; i < array.length; i++) {
-    if (!fn(array[i])) {
-      return false;
+    if (!Array.isArray(array) || !array.length) {
+        throw new Error('empty array');
     }
-  }
-  return true;
-};
+    if (!fn) {
+        throw new Error('fn is not a function');
+    }
+
+    for (let i = 0; i < array.length; i++) {
+        if (!fn(array[i])) {
+            return false;
+        }
+    }
+
+    return true;
+}
 
 isAllTrue([1, 2, 3, 4, 5], n => n < 10);
-// почему вызов функции fn срабатывает в таком виде?
+
 /*
  Задание 2:
 
@@ -55,20 +56,21 @@ isAllTrue([1, 2, 3, 4, 5], n => n < 10);
 
 function isSomeTrue(array, fn) {
 
-  if (!Array.isArray(array) || !array.length) {
-    throw new Error('empty array');
-  };
-  if (!fn) {
-    throw new Error('fn is not a function');
-  };
-
-  for (i = 0; i < array.length; i++) {
-    if (fn(array[i]) === true) {
-      return true;
+    if (!Array.isArray(array) || !array.length) {
+        throw new Error('empty array');
     }
-  }
-  return false;
-};
+    if (!fn) {
+        throw new Error('fn is not a function');
+    }
+
+    for (let i = 0; i < array.length; i++) {
+        if (fn(array[i]) === true) {
+            return true;
+        }
+    }
+
+    return false;
+}
 
 isSomeTrue([1, 2, 30, 4, 5], n => n > 20);
 
@@ -85,28 +87,28 @@ isSomeTrue([1, 2, 30, 4, 5], n => n > 20);
  */
 
 function returnBadArguments(fn) {
-  var newArr = [];
+    var newArr = [];
 
-  if (typeof fn !== 'function') {
-    throw new Error('fn is not a function');
-  };
-
-  for (let i = 1 ; i < arguments.length; i++) {
-    try {
-      fn(arguments[i]) === Error
-    } catch (e) {
-      newArr.push(arguments[i]);
+    if (typeof fn !== 'function') {
+        throw new Error('fn is not a function');
     }
-  };
 
-  return newArr;
-};
+    for (let i = 1 ; i < arguments.length; i++) {
+        try {
+            fn(arguments[i]) === Error
+        } catch (e) {
+            newArr.push(arguments[i]);
+        }
+    }
 
-  function fn(arg) {
+    return newArr;
+}
+
+function fn(arg) {
     if (typeof arg !== 'number') {
-    throw new Error();
-  };
-};
+        throw new Error();
+    }
+}
 
 returnBadArguments(fn);
 
@@ -129,59 +131,59 @@ returnBadArguments(fn);
  */
 
 function calculator(number = 0) {
-  var calcObj = {};
-// debugger;
+    var calcObj = {};
 
     if (typeof number !== 'number') {
-      throw new Error('number is not a number')
-    };
+        throw new Error('number is not a number')
+    }
 
     calcObj.sum = function() {
-      // var sum = number;       // почему когда перед циклом переменную number записываешь в другую, то все работает?
-      for (i = 0; i < arguments.length; i++) {
-        number += arguments[i];   //почему здесь ругается на +=? и здесь нужно использовать переменную let?
-      };
+        for (let i = 0; i < arguments.length; i++) {
+            number += arguments[i];
+        }
+
         return number;
     };
 
-    // calcObj.dif = function() {
-    //   var number = this.number;
-    //   for (i = 0; i < arguments.length; i++) {
-    //     var number = number - arguments[i];
-    //   };
-    //     return number;
-    // };
+    calcObj.dif = function() {
+        for (let i = 0; i < arguments.length; i++) {
+            number -= arguments[i];
+        }
 
-    // calcObj.div = function() {
-    //   var number = this.number;
-    //   for (i = 0; i < arguments.length; i++) {
-    //     if (arguments[i] === 0) {
-    //       throw new Error('division by 0')
-    //     };
-    //     var number = number / arguments[i];
-    //   };
-    //     return number;
-    // };
+        return number;
+    };
 
-    // calcObj.mul = function() {
-    //   var number = this.number;
-    //   for (i = 0; i < arguments.length; i++) {
-    //     var number = number * arguments[i];
-    //   };
-    //     return number;
-    // };
+    calcObj.div = function() {
+        for (let i = 0; i < arguments.length; i++) {
+            if (arguments[i] === 0) {
+                throw new Error('division by 0')
+            }
+            number /= arguments[i];
+        }
 
-  return calcObj;
-};
+        return number;
+    };
 
-const calcObj = calculator(number = 0)
-console.log(calcObj.sum(2, 3));
+    calcObj.mul = function() {
+        for (let i = 0; i < arguments.length; i++) {
+            number *= arguments[i];
+        }
+
+        return number;
+    };
+
+    return calcObj;
+}
+
+const calcObj = calculator(0);
+
+calcObj.div(2, 3);
 
 /* При решении задач, пострайтесь использовать отладчик */
 
-// export {
-//     isAllTrue,
-//     isSomeTrue,
-//     returnBadArguments,
-//     calculator
-// };
+export {
+    isAllTrue,
+    isSomeTrue,
+    returnBadArguments,
+    calculator
+};
