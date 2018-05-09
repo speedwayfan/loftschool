@@ -38,10 +38,7 @@ function map(array, fn1) {
     return newArr;
 }
 
-function fn1(item) {
-
-    return item * item;
-}
+var fn1 = item => item * item;
 
 map([1, 2, 3], fn1);
 
