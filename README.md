@@ -14,3 +14,10 @@ git add .
 git commit -m " "
 git push
 git push origin hw1
+
+
+git checkout -b hw2 - создать ветку
+git add . - добавить её
+git commit -m "do second hw" - создать коммент
+git push origin hw2 - внести в гитхаб
+git checkout hw2 - переключиться между веткой
