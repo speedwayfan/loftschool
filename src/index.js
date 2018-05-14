@@ -14,7 +14,6 @@
 function createDivWithText(text) {
     const div = document.createElement('div');
 
-    document.body.insertBefore(div, document.body.firstChild);
     div.innerText = text;
 
     return div;
@@ -33,7 +32,6 @@ createDivWithText('loftschool');
  */
 
 function prepend(what, where) {
-    document.body.insertBefore(where, document.body.firstChild);
     where.insertBefore(what, where.firstChild);
 }
 
@@ -107,9 +105,10 @@ function findError(where) {
 
     for (var child of where.children) {
         result.push(child.innerText);
-        if (child.innerText === '') {
-            result.pop(child.innerText);
-        }
+        // это условие убирает пустые элементы из массива:
+        // if (child.innerText === '') {
+        //     result.pop(child.innerText);
+        // }
     }
 
     return result;
