@@ -9,9 +9,8 @@
    addListener('click', document.querySelector('a'), () => console.log('...')) 
    // должна добавить указанный обработчик кликов на указанный элемент
  */
-function addListener(eventName, target, fn) {
-    target.addEventListener(eventName, fn);
-}
+
+var addListener = (eventName, target, fn) => target.addEventListener(eventName, fn);
 
 /*
  Задание 2:
@@ -22,9 +21,8 @@ function addListener(eventName, target, fn) {
    removeListener('click', document.querySelector('a'), someHandler) 
    // должна удалить указанный обработчик кликов на указанный элемент
  */
-function removeListener(eventName, target, fn) {
-    target.removeEventListener(eventName, fn);
-}
+
+var removeListener = (eventName, target, fn) => target.removeEventListener(eventName, fn);
 
 /*
  Задание 3:
@@ -35,11 +33,9 @@ function removeListener(eventName, target, fn) {
    skipDefault('click', document.querySelector('a')) 
    // после вызова функции, клики на указанную ссылку не должны приводить к переходу на другую страницу
  */
-function skipDefault(eventName, target) {
-    target.addEventListener(eventName, function fn(e) {
-        e.preventDefault();
-    });
-}
+var skipDefault = (eventName, target) => target.addEventListener(eventName, function fn(e) {
+    e.preventDefault();
+});
 
 /*
  Задание 4:
@@ -68,7 +64,7 @@ function emulateClick(target) {
  */
 function delegate(target, fn) {
     target.addEventListener('click', function foo(event) {
-        if (event.target.closest('BUTTON')) {
+        if (event.target.closest('button')) {
             fn();
         }
     });
@@ -84,9 +80,7 @@ function delegate(target, fn) {
    once(document.querySelector('button'), () => console.log('обработчик выполнился!')) 
    // добавит такой обработчик кликов для указанного элемента, который вызовется только один раз и затем удалится
  */
-function once(target, fn) {
-    target.addEventListener('click', fn, { once: true });
-}
+var once = (target, fn) => target.addEventListener('click', fn, { once: true });
 
 export {
     addListener,
