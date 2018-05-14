@@ -50,16 +50,22 @@ map([1, 2, 3], fn1);
  */
 
 function reduce(array, fn2, initial) {
-    let acc = initial;
+    if (typeof initial === 'undefined') {
+        var acc = array[0];
+        var i = 1;
+    } else { 
+        acc = initial, 
+        i = 0
+    }
 
-    for (let i = 0; i < array.length; i++) {
+    for (; i < array.length; i++) {
         acc = fn2(acc, array[i], i, array);
     }
 
     return acc;
 }
 
-function fn2(initial, currentItem) {
+function fn2(initial, currentItem, i, array) {
     var sum = initial + currentItem;
 
     return sum;
