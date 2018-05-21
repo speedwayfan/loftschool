@@ -3,9 +3,42 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<style type="text/css">
+	    * {
+	   		margin: 10px;
+	    }
+    </style>
 </head>
 <body>
 	
-	<script src="index.js"></script>
+	<div id="homework-container">
+		<table id="list-table tbody" width="33%" border="1">
+<!-- 			<tr>
+				<td>Имя</td>
+				<td>Значение</td>
+			</tr>
+			<tr>
+				<td>Строка 1</td>
+				<td>Строка 2</td>
+				<td>Строка 3</td>
+			</tr>
+			<tr>
+				<td>Строка 1</td>
+				<td>Строка 2</td>
+				<td>Строка 3</td>
+			</tr> -->
+		</table>
+		<form>
+			<input type="text" id="filter-name-input">Фильтр
+			<br>
+			<input type="text" id="add-name-input">Имя
+			<br>
+			<input type="text" id="add-value-input">Значение
+			<br>
+			<button id="add-button">добавить cookie</button>
+		</form>
+	</div>
+
+	<script src="cookie.js"></script>
 </body>
 </html>
