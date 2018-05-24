@@ -43,7 +43,7 @@ const addButton = homeworkContainer.querySelector('#add-button');
 // таблица со списком cookie
 const listTable = homeworkContainer.querySelector('#list-table tbody');
 
-// зачем здесь options = {} ?
+// зачем здесь options = {} - чтобы не было undefined, потому что опций может не быть
 function setCookie(name, value, options = {}) {
     let string = `${name}=${value}`;
     // options - Объект с дополнительными свойствами для установки cookie
@@ -80,8 +80,8 @@ filterNameInput.addEventListener('keyup', function() {
 addButton.addEventListener('click', () => {
     if (addNameInput.value && addValueInput.value) {
         setCookie(addNameInput.value, addValueInput.value)
-        addNameInput.value = '';
-        addValueInput.value = '';
+        // addNameInput.value = '';
+        // addValueInput.value = '';
         loadCookies();
     }
 });
@@ -95,11 +95,12 @@ listTable.addEventListener('click', (e) => {
 });
 
 function loadCookies() {
+
     let objCookies = getCookies();
 
     listTable.innerHTML = '';
     if (document.cookie.length == 0) {
-        // что возвращает это условие?
+        // возвращает это условие - undefined, выйти из функции
         return;
     }
     // Обычно используются для создания фрагмента документа, добавления в него новых элементов/нод,
@@ -107,12 +108,13 @@ function loadCookies() {
     const fragment = document.createDocumentFragment();
 
     for (let key in objCookies) {
-        // что проверяется в этом условии
+        // что проверяется в этом условии - фильтр(в т.ч. по буквам и не обязательно сначала слова)
         if (isMatching(key, filterNameInput.value) || isMatching(objCookies[key], filterNameInput.value)) {
             const tr = document.createElement('tr');
             const tdName = document.createElement('td');
             const tdValue = document.createElement('td');
             const delButton = document.createElement('button');
+            // const tBody = document.createElement('tbody');
 
             delButton.classList.add('del-button');
             delButton.dataset.cookieName = key;
@@ -123,6 +125,8 @@ function loadCookies() {
             tr.appendChild(tdName);
             tr.appendChild(tdValue);
             tr.appendChild(delButton);
+            // tBody.appendChild(tr);
+            // fragment.appendChild(tBody);
             fragment.appendChild(tr);
         }
     }
@@ -140,13 +144,13 @@ function getCookies() {
     return document.cookie.split('; ').reduce((prev, current) => {
         const [name, value] = current.split('=');
 
+        // форма написания [name]  деструктуризация
         prev[name] = value;
 
         return prev;
     }, []);
-//     !!! заносим все в массив или объект? т.к. обращаемся мы потом как к объекту !!!
+// [] - второй аргумент reduce
 // последняя строка - заносим все элементые, разделенные и созданые методом reduce, в пустой массив
 }
 
-// зачем в конце отдельно вызывается эта функция
 loadCookies();
