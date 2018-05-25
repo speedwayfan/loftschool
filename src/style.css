@@ -1,0 +1,78 @@
+.container{
+    width: 720px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    overflow: hidden;
+    font-family: sans-serif;    
+}
+
+.main__title{
+	background: #fc8f5b;
+    color: #fff;
+    margin: 0;
+    padding: 10px;
+}
+
+.main__block{
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	height: 500px;
+}
+
+.left__block, .right__block{
+	justify-content: space-between;
+    flex-grow: 1;
+    width: 50%;
+}
+
+.div__input{
+    background: #d7d7d7;
+}
+
+.input__search{
+	width: 95%;
+    margin: 5px;
+    border-radius: 7px;
+    border: 1px solid grey;
+}
+
+.friend__title{
+	margin: 0;
+    border: 1px solid #d7d7d7;
+    padding: 10px;
+}
+
+.friend__list{
+    list-style-type: none;
+    padding: 0 10px;
+	height: 400px;
+    overflow: auto;
+}
+
+.friend__item{
+
+}
+
+.footer{
+    text-align: right;
+    line-height: 40px;
+    background: #efefef;
+}
+
+.button__save{
+	margin-right: 10px;
+    background: #fc8f5b;
+    color: #fff;
+    border: none;
+    padding: 4px 7px;
+    border-radius: 5px;
+}
+
+
+.plus{
+    font-weight: 900;
+    color: grey;
+}
