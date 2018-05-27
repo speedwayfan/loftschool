@@ -19,7 +19,6 @@
 	display: -ms-flex;
 	display: -o-flex;
 	display: flex;
-	height: 500px;
 }
 
 .left__block, .right__block{
@@ -30,6 +29,7 @@
 
 .div__input{
     background: #d7d7d7;
+    position: relative;
 }
 
 .input__search{
@@ -39,21 +39,39 @@
     border: 1px solid grey;
 }
 
+.loupe{
+    position: absolute;
+    right: 14px;
+    top: 3px;
+    color: grey;
+}
+
 .friend__title{
 	margin: 0;
     border: 1px solid #d7d7d7;
     padding: 10px;
 }
 
-.friend__list{
+.friend__list, #friend__list{
     list-style-type: none;
     padding: 0 10px;
-	height: 400px;
+	height: 350px;
     overflow: auto;
 }
 
-.friend__item{
+.friends {
+    display: flex;
+    flex-wrap: wrap;
+}
 
+.friend {
+    width: 100px;
+    margin: 0 40px 40px 0;
+    text-align: center;
+}
+
+.friend img {
+   border-radius: 50%;
 }
 
 .footer{

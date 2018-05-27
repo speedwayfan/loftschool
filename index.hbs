@@ -17,18 +17,20 @@
 			<div class="main__block">
 				<div class="left__block">
 					<div class="div__input">
-						<input type="text" class="input__search" placeholder="&#128269">
+						<input type="text" class="input__search" placeholder=" Начните вводить имя друга">
+						<span class="loupe">&#128269</span>
 					</div>
 					<h5 class="friend__title">Ваши друзья</h5>
-					<ul class="friend__list">
-						<li class="friend__item">друг 1</li>
+					<ul id="friend__list">
+
 					</ul>
 					<span class="plus">&#10010</span>
 					<span class="plus">&#10006</span>
 				</div>
 				<div class="right__block">
 					<div class="div__input">
-						<input type="text" class="input__search" placeholder="&#128269">
+						<input type="text" class="input__search" placeholder=" Начните вводить имя друга">
+						<span class="loupe">&#128269</span>
 					</div>
 					<h5 class="friend__title">Друзья в списке</h5>
 					<ul class="friend__list">
@@ -41,8 +43,19 @@
 			</div>
 		</div>
 	</div>
+<!-- браузер воспринимает такую запись не как скрипт, а как текстовое содержимое \/ -->
+						<script id="user-template" type="text/x-handlebars-template">
+				            <div class="friends">
+				                {{#each items}}
+				                <div class="friend">
+				                    <img src="{{photo_100}}"/>
+				                    <div>{{first_name}} {{last_name}}</div>
+				                </div>
+				                {{/each}}
+				            </div>
+				        </script>
 
-	<script src="src/main.js" type="script"></script>
+	<script type="text/javascript" src="src/index.js"></script>
 
 </body>
 </html>
